@@ -4,11 +4,12 @@ const {Book,validateBook}=require("../models/books");
 
 router.post('/',async (req,res)=>{
     const message=await validateBook(req.body)
-    if(message)
+   if(message)
     {
-        res.status(400).send(message)
+        //res.status(400).send(message)
+        console.log(message)
     }
-    else{
+    //else{
     book=new Book({
         name:req.body.bookName ,
         author:{
@@ -17,7 +18,7 @@ router.post('/',async (req,res)=>{
         },
         genre:req.body.genre
     })
-    book.save().then(book=>{res.send(book)}).catch((e)=>{res.status(400).send(e)})}
+    book.save().then(book=>{res.send(book)}).catch((e)=>{res.status(400).send(e)})//}
 })
 router.get('/',(req,res)=>{
    
@@ -26,7 +27,7 @@ router.get('/',(req,res)=>{
 router.get('/:id',(req,res)=>{
    
     Book.findById(req.params.id)
-    .then(book=>{
+    .then((book)=>{
         if(book)
            res.send(book)
         res.status(400).send("something is wrong")   

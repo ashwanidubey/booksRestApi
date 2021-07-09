@@ -35,8 +35,8 @@ mongoose.connect(process.env.MONGO_URL,
   useUnifiedTopology:true,
   useFindAndModify:false
 }).then(()=>{
-    logger.log("info","connection successfull")
+   console.log("connection successfull")
 }).catch((e)=>{logger.log("error",e)})
 app.listen(port ,()=>{
-    logger.warn(`server started a port ${port}`)
+    console.log(`server started a port ${port}`)
 })
